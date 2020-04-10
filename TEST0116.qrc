@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/covid19.png</file>
+    </qresource>
+</RCC>
