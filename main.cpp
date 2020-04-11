@@ -3,6 +3,7 @@
 
 int main(int argc, char *argv[])
 {
+	srand(static_cast<unsigned int>(time(0)));
 	QApplication a(argc, argv);
 	TEST0116 w;
 	w.show();
