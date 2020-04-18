@@ -8,12 +8,13 @@
 #include <vector>
 #include "Actor.h"
 
+
 class TEST0116 : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	TEST0116(QWidget *parent = Q_NULLPTR);
+	TEST0116(QWidget* parent = Q_NULLPTR);
 
 private:
 	Ui::TEST0116Class ui;

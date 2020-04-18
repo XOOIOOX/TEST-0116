@@ -1,4 +1,8 @@
 #include "TEST0116.h"
+#include "Ellipse.h"
+#include "Rectangle.h"
+#include "Triangle.h"
+#include "Image.h"
 
 TEST0116::TEST0116(QWidget* parent) : QMainWindow(parent)
 {
@@ -13,9 +17,35 @@ TEST0116::TEST0116(QWidget* parent) : QMainWindow(parent)
 	scene = new QGraphicsScene(0, 0, 600, 600, this);
 	view->setScene(scene);
 
-	for (size_t i = 0; i < MaxItems; i++)
+	for (size_t i = 0; i < MaxItems; ++i)
 	{
-		actorsVector.push_back(std::make_shared<Actor>(Actor(scene)));
+		switch ((Shapes::Shape)(rand() % 4))
+		{
+			case Shapes::Rectangle:
+			{
+				actorsVector.push_back(std::make_shared<Rectangle>(scene));
+				break;
+			}
+			case Shapes::Ellipse:
+			{
+				actorsVector.push_back(std::make_shared<Ellipse>(scene));
+				break;
+			}
+			case Shapes::Triangle:
+			{
+				actorsVector.push_back(std::make_shared<Triangle>(scene));
+				break;
+			}
+			case Shapes::Image:
+			{
+				actorsVector.push_back(std::make_shared<Image>(scene));
+				break;
+			}
+			default:
+			{
+				break;
+			}
+		}
 	}
 
 	animationTimer = new QTimer(this);

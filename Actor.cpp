@@ -6,18 +6,17 @@ Actor::Actor(QGraphicsScene* scene) : QGraphicsRectItem(nullptr), scene(scene)
 	setPos(QPointF{ random() * (scene->width() - this->rect().width()), random() * (scene->height() - this->rect().height()) });
 	setTransformOriginPoint({ rect().size().width() / 2.0, rect().size().height() / 2.0 });
 
-	shape = (Shape)(rand() % 4);
 	delta = { speedRandomizer() * randomSign(), speedRandomizer() * randomSign() };
 	brush = { QColor{ rand() % 255, rand() % 255, rand() % 255 }, Qt::SolidPattern };
 	pen = { Qt::NoPen };
-	polygon = QVector<QPointF>{ QPointF{ rect().width() / 2.0, 0.0 }, QPointF{ rect().width(), rect().height() }, QPointF{ 0.0, rect().height() } };
-	pixmap = QPixmap(":/Resources/covid19.png");
 	opacity = random();
-
 	this->scene->addItem(this);
 }
 
-Actor::Actor(const Actor& actor) : Actor(actor.scene) {}
+Actor::~Actor()
+{
+	scene->removeItem(this);
+}
 
 void Actor::advance(int phase)
 {
@@ -56,47 +55,9 @@ void Actor::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
 	painter->setBrush(brush);
 	painter->setPen(pen);
 	painter->setOpacity(opacity);
-
-	switch (shape)
-	{
-		case Rectangle:
-		{
-			painter->drawEllipse(rect());
-			break;
-		}
-		case Ellipse:
-		{
-			painter->drawRect(rect());
-			break;
-		}
-		case Triangle:
-		{
-			painter->drawPolygon(polygon);
-			break;
-		}
-		case Image:
-		{
-			painter->drawPixmap(rect().toRect(), pixmap);
-			break;
-		}
-		default:
-		{
-			break;
-		}
-	}
+	paintNested(painter);
 }
 
-double Actor::randomSign()
-{
-	return rand() % 2 ? 1.0 : -1.0;
-}
-
-double Actor::speedRandomizer()
-{
-	return random() * (DeltaPosMax - DeltaPosMin) + DeltaPosMin;
-}
-
-double Actor::random()
-{
-	return (double)rand() / RAND_MAX;
-}
+double Actor::randomSign() { return rand() % 2 ? 1.0 : -1.0; }
+double Actor::speedRandomizer() { return random() * (DeltaPosMax - DeltaPosMin) + DeltaPosMin; }
+double Actor::random() { return (double)rand() / RAND_MAX; }
