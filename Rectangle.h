@@ -5,7 +5,7 @@ class Rectangle : public Actor
 {
 public:
 	Rectangle(QGraphicsScene* scene) : Actor(scene) {}
-	Rectangle(const Rectangle& ellipse) : Rectangle(ellipse.scene) {}
+	Rectangle(const Rectangle& rectangle) : Rectangle(rectangle.scene) {}
 	~Rectangle() {}
 
 protected:
