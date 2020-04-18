@@ -21,6 +21,10 @@ private:
 	QGraphicsView* view;
 	QGraphicsScene* scene;
 	QTimer* animationTimer;
+	QTimer* deleteTimer;
 
 	std::vector<std::shared_ptr<Actor>> actorsVector;
+
+public slots:
+	void deleteObjectSlot();
 };

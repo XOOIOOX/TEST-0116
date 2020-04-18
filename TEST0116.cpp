@@ -51,4 +51,16 @@ TEST0116::TEST0116(QWidget* parent) : QMainWindow(parent)
 	animationTimer = new QTimer(this);
 	connect(animationTimer, SIGNAL(timeout()), scene, SLOT(advance()));
 	animationTimer->start(1000 / AinmationFps);
+
+	deleteTimer = new QTimer(this);
+	connect(deleteTimer, SIGNAL(timeout()), this, SLOT(deleteObjectSlot()));
+	deleteTimer->start(DeleteAfterMs);
+}
+
+void TEST0116::deleteObjectSlot()
+{
+	if (!actorsVector.empty())
+	{
+		actorsVector.erase(actorsVector.end() - 1);
+	}
 }
