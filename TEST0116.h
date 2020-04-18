@@ -7,7 +7,7 @@
 #include <QTimer>
 #include <vector>
 #include "Actor.h"
-#include "Ellipse.h"
+
 
 class TEST0116 : public QMainWindow
 {

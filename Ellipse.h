@@ -3,9 +3,9 @@
 class Ellipse : public Actor
 {
 public:
-	Ellipse(QGraphicsScene* scene);
-	Ellipse(const Ellipse& ellipse);
-	~Ellipse();
+	Ellipse(QGraphicsScene* scene) : Actor(scene) {}
+	Ellipse(const Ellipse& ellipse) : Ellipse(ellipse.scene) {}
+	~Ellipse() {}
 protected:
 	void paintNested(QPainter* painter);
 };

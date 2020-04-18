@@ -1,5 +1,6 @@
 #include "TEST0116.h"
-
+#include "Ellipse.h"
+#include "Rectangle.h"
 
 TEST0116::TEST0116(QWidget* parent) : QMainWindow(parent)
 {
@@ -16,7 +17,7 @@ TEST0116::TEST0116(QWidget* parent) : QMainWindow(parent)
 
 	for (size_t i = 0; i < MaxItems; i++)
 	{
-		actorsVector.push_back(std::make_shared<Ellipse>(scene));
+		actorsVector.push_back(std::make_shared<Rectangle>(scene));
 	}
 
 	animationTimer = new QTimer(this);
