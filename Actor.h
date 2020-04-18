@@ -10,12 +10,16 @@ public:
 
 	Actor(QGraphicsScene* scene);
 	Actor(const Actor& actor);
+	virtual ~Actor();
 
 	virtual void advance(int phase);
-	void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr);
+	virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr);
 
-private:
+protected:
 	QGraphicsScene* scene;
+	virtual void paintNested(QPainter* painter) = 0;
+private:
+
 	QPointF delta{ DeltaPosMax, DeltaPosMax };
 	QPointF direction{ randomSign(), randomSign() };
 	double rotationDelta{ RotationStep * randomSign() };
@@ -23,9 +27,9 @@ private:
 	QPainter painter;
 	QBrush brush;
 	QPen pen;
-	Shape shape{ Rectangle };
-	QPolygonF polygon;
-	QPixmap pixmap;
+	//Shape shape{ Rectangle };
+	//QPolygonF polygon;
+	//QPixmap pixmap;
 	double opacity{ 1.0 };
 	double opacityDirection{ OpacityStep };
 

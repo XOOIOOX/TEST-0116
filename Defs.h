@@ -9,4 +9,7 @@ constexpr double DeltaPosMax = 2.0;
 constexpr double RotationStep = 1.0;
 constexpr double OpacityStep = 0.005;
 
-enum Shape { Rectangle, Ellipse, Triangle, Image }; 
+namespace Shapes
+{
+	enum Shape { Rectangle, Ellipse, Triangle, Image };
+}
