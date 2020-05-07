@@ -29,4 +29,5 @@ private:
 
 public slots:
 	void modificationObjectSlot();
+	void beepSlot();
 };

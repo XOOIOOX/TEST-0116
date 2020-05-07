@@ -49,6 +49,9 @@
     <QtMoc Include="TEST0116.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="Actor.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="TEST0116.ui">
@@ -66,9 +69,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Actor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Defs.h">
       <Filter>Header Files</Filter>
     </ClInclude>

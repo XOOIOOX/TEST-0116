@@ -3,6 +3,7 @@
 #include "Rectangle.h"
 #include "Triangle.h"
 #include "Image.h"
+#include <iostream>
 
 TEST0116::TEST0116(QWidget* parent) : QMainWindow(parent)
 {
@@ -16,7 +17,6 @@ TEST0116::TEST0116(QWidget* parent) : QMainWindow(parent)
 
 	scene = new QGraphicsScene(0, 0, 600, 600, this);
 	view->setScene(scene);
-	//for (size_t i = 0; i < MaxItems; ++i) { itemsGenerator(); }
 
 	animationTimer = new QTimer(this);
 	connect(animationTimer, SIGNAL(timeout()), scene, SLOT(advance()));
@@ -56,6 +56,8 @@ void TEST0116::itemsGenerator()
 			break;
 		}
 	}
+
+	connect(actorsVector.back().get(), SIGNAL(beepSignal()), this, SLOT(beepSlot()));
 }
 
 void TEST0116::modificationObjectSlot()
@@ -70,4 +72,9 @@ void TEST0116::modificationObjectSlot()
 		if (actorsVector.size() < MaxItems) { itemsGenerator(); }
 		else { modifiacationDirection = false; }
 	}
+}
+
+void TEST0116::beepSlot()
+{
+	std::cout << "Beep\nBeeep\nBeeeep" << std::endl;
 }

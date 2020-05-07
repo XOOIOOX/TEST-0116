@@ -3,9 +3,12 @@
 #include <QGraphicsScene>
 #include <QPainter>
 #include <QGraphicsItem>
+#include "QTimer"
 
-class Actor : public QGraphicsRectItem, QObject
+class Actor : public QObject, public QGraphicsRectItem
 {
+	Q_OBJECT
+
 public:
 	Actor(QGraphicsScene* scene);
 	Actor(const Actor& actor) : Actor(actor.scene) {}
@@ -28,7 +31,15 @@ private:
 	double opacity{ 1.0 };
 	double opacityDirection{ OpacityStep };
 
+	QTimer* beepTimer;
+
 	double randomSign();
 	double speedRandomizer();
 	double random();
+
+public slots:
+	void timerSlot();
+
+signals:
+	void beepSignal();
 };

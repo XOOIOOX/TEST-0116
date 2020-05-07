@@ -10,6 +10,12 @@ Actor::Actor(QGraphicsScene* scene) : QGraphicsRectItem(nullptr), scene(scene)
 	brush = { QColor{ rand() % 255, rand() % 255, rand() % 255 }, Qt::SolidPattern };
 	pen = { Qt::NoPen };
 	opacity = random();
+
+	beepTimer = new QTimer(this);
+	beepTimer->start(1000);
+
+	connect(beepTimer, SIGNAL(timeout()), this, SLOT(timerSlot()));
+
 	this->scene->addItem(this);
 }
 
@@ -61,3 +67,8 @@ void Actor::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
 double Actor::randomSign() { return rand() % 2 ? 1.0 : -1.0; }
 double Actor::speedRandomizer() { return random() * (DeltaPosMax - DeltaPosMin) + DeltaPosMin; }
 double Actor::random() { return (double)rand() / RAND_MAX; }
+
+void Actor::timerSlot()
+{
+	emit beepSignal();
+}
