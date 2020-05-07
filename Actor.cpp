@@ -13,7 +13,6 @@ Actor::Actor(QGraphicsScene* scene) : QGraphicsRectItem(nullptr), scene(scene)
 
 	beepTimer = new QTimer(this);
 	beepTimer->start(1000);
-
 	connect(beepTimer, SIGNAL(timeout()), this, SLOT(timerSlot()));
 
 	this->scene->addItem(this);
