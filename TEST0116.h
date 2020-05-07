@@ -21,10 +21,12 @@ private:
 	QGraphicsView* view;
 	QGraphicsScene* scene;
 	QTimer* animationTimer;
-	QTimer* deleteTimer;
+	QTimer* modificationTimer;
+	bool modifiacationDirection{ false };
 
+	void itemsGenerator();
 	std::vector<std::shared_ptr<Actor>> actorsVector;
 
 public slots:
-	void deleteObjectSlot();
+	void modificationObjectSlot();
 };

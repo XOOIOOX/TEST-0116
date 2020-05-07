@@ -8,7 +8,7 @@ constexpr double DeltaPosMin = 1.0;
 constexpr double DeltaPosMax = 2.0;
 constexpr double RotationStep = 1.0;
 constexpr double OpacityStep = 0.005;
-constexpr auto DeleteAfterMs = 1000;
+constexpr auto DeleteAfterMs = 200;
 
 namespace Shapes
 {
